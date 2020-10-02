@@ -38,6 +38,10 @@
 </div>
 
 <style>
+    h1 {
+        padding-top: .5em;
+    }
+
     .temp-auth {
         display: flex;
         height: 100vh;

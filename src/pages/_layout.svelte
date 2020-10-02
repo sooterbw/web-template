@@ -3,6 +3,8 @@
     import { fly, fade } from 'svelte/transition';
     import { jwt } from '../stores.js';
 
+    let colorPicker = "#ffffff"
+
     let modal = false;
     let edit, settings = false;
 
@@ -39,13 +41,14 @@
 
     {#if test}
     <div class="test-data" out:fly="{{ x:300, duration:1500 }}">
-        <p>{$page.title}</p>
+        <p>Pick a color:</p>
+        <input class="color-picker" style='background-color: {colorPicker};' type="color" bind:value={colorPicker}>
     </div>
     {/if}
 
     {#if modal}
-    <div class="modal-mask">
-        <div class="modal" transition:fade={{duration:500}}>
+    <div class="modal-mask" transition:fade={{duration:500}}>
+        <div class="modal">
             <svg class="close-modal" on:click={() => modal = false} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -58,16 +61,40 @@
 <slot />
 
 <style>
+
+    input[type='color']::-webkit-color-swatch {
+        border: none;
+    }
+
+    input::-moz-color-swatch {
+        border: none;
+    }
+
+    input[type='color']:focus {
+        outline: none;
+        border-radius: 100%;
+    }
+
+    .color-picker {
+        height: 1.75em;
+        width: 1.75em;
+        border-radius: 100%;
+        cursor: pointer;
+        margin: 0;
+    }
+
     .test-data {
         position: fixed;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         top: 0;
         right: 0;
         background-color: aliceblue;
         width: 15em;
         height: 50px;
+        padding-left: .5em;
+        padding-right: .5em;
         border-radius: 0 0 0 10px;
         font-weight: bold;
     }
@@ -114,6 +141,8 @@
 
     .modal {
         position: relative;
+        display: flex;
+        justify-content: center;
         background-color: aliceblue;
         height: 300px;
         width: 500px;
