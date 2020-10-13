@@ -42,7 +42,7 @@
     {#if test}
     <div class="test-data" out:fly="{{ x:300, duration:1500 }}">
         <p>Pick a color:</p>
-        <input class="color-picker" style='background-color: {colorPicker};' type="color" bind:value={colorPicker}>
+        <input class="color-picker" style="background-color: {colorPicker};" type="color" bind:value={colorPicker}>
     </div>
     {/if}
 

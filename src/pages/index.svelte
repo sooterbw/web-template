@@ -1,5 +1,14 @@
+<script>
+    import Block from '../components/Block.svelte'
+
+    let data = {
+        "text": "Welcome!",
+        "class": "heading"
+        }
+</script>
+
 <div class="temp-index">
-    <h1>Welcome!</h1>
+    <Block contentType={data.class} content={data.text} />
 </div>
 
 <style>
